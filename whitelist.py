@@ -1,0 +1,7 @@
+FILES  # unused variable (tests/_environ.py:9)
+WHITELIST  # unused variable (tests/_environ.py:14)
+exc_tb  # unused variable (gitspy/_environ.py:30)
+exc_type  # unused variable (gitspy/_environ.py:30)
+exc_val  # unused variable (gitspy/_environ.py:30)
+fixture_git  # unused function (tests/conftest.py:15)
+fixture_mock_environment  # unused function (tests/conftest.py:24)
