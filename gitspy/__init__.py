@@ -1,4 +1,4 @@
-"""Plugin architecture for auditing Python packages."""
+"""Intuitive Git for Python."""
 from . import exceptions
 from ._subprocess import Git
 from ._version import __version__
