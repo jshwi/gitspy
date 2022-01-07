@@ -16,10 +16,3 @@ class NotARepositoryError(OSError):
 
     def __init__(self) -> None:
         super().__init__("not a git repository")
-
-
-class CommandNotFoundError(OSError):
-    """Raise when subprocess called is not on system."""
-
-    def __init__(self, cmd: str) -> None:
-        super().__init__(f"{cmd}: command not found...")

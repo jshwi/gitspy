@@ -2,8 +2,6 @@
 tests._test
 ===========
 """
-import os
-from datetime import datetime
 from pathlib import Path
 from subprocess import CalledProcessError
 
@@ -12,23 +10,6 @@ import pytest
 import gitspy
 
 from ._environ import REAL_REPO, REPO
-
-
-def test_pipe_to_file(git: gitspy.Git) -> None:
-    """Test that the ``Subprocess`` class correctly writes to file.
-
-    When the ``file`` keyword argument is used stdout should be piped to
-    the filename provided.
-    """
-    path = Path.cwd() / "file.py"
-    git.init(file=path)
-    with open(path, encoding="utf-8") as fin:
-        assert (
-            fin.read().strip()
-            == "Reinitialized existing Git repository in {}{}".format(
-                Path.cwd() / ".git", os.sep
-            )
-        )
 
 
 def test_arg_order_clone(
@@ -42,7 +23,7 @@ def test_arg_order_clone(
     """
     called = []
     monkeypatch.setattr(
-        "gitspy._subprocess.Subprocess.call",
+        "gitspy._subprocess._Subprocess.call",
         lambda x, *y, **_: called.extend(
             [f"{x} {' '.join(str(i) for i in y)}"]
         ),
@@ -93,19 +74,6 @@ def test_bare(capsys: pytest.CaptureFixture, git: gitspy.Git) -> None:
     assert f"Initialized empty Git repository in {remote}" in output.out
 
 
-def test_command_not_found_error() -> None:
-    """Test ``CommandNotFoundError`` warning with ``Subprocess``."""
-    unique = datetime.now().strftime("%d%m%YT%H%M%S")
-    # noinspection PyUnresolvedReferences
-    proc = gitspy._subprocess.Subprocess(  # pylint: disable=protected-access
-        unique
-    )
-    with pytest.raises(gitspy.exceptions.CommandNotFoundError) as err:
-        proc.call()
-
-    assert str(err.value) == f"{unique}: command not found..."
-
-
 def test_key_in_context(monkeypatch: pytest.MonkeyPatch) -> None:
     """Confirm there is no error raised when deleting temp key-value."""
     obj = {"key": "original-value"}
@@ -117,13 +85,3 @@ def test_key_in_context(monkeypatch: pytest.MonkeyPatch) -> None:
         assert obj["key"] == "temp-value"
 
     assert obj["key"] == "original-value"
-
-
-def test_capture(git) -> None:
-    """Test recording of sys output when called with ``capture``."""
-    remote = str(Path.home() / "origin.git")
-    git.init("--bare", remote, capture=True)
-    output = git.stdout()
-    assert len(output) == 1
-    assert f"Initialized empty Git repository in {remote}/" in output
-    assert not git.stdout()

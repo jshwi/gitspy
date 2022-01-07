@@ -30,6 +30,7 @@ version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+spall = "^0.1.0"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
