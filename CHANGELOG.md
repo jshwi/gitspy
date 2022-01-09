@@ -7,5 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/gitspy/compare/v0.1.0...HEAD)
 ------------------------------------------------------------------------
-### Added
-- Initial Release
+### Fixed
+- Fixes `poetry` packaging
+
+[0.1.0](https://github.com/jshwi/gitspy/releases/tag/v0.1.0) - 2022-01-09
+------------------------------------------------------------------------
+Initial Release
