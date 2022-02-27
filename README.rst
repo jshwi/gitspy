@@ -44,12 +44,11 @@ Get branch
     >>> # capture will store stdout, which can then be consumed by
     >>> # calling `git.stdout()`
     >>> # default is to print stdout, and stderr, to console
-    >>> returncode = git.symbolic_ref("--short", "HEAD", capture=True)
+    >>> returncode = git.init(capture=True)
     >>> print(returncode)  # printing returncode
     0
-    >>> # consume stdout, a list containing a `str` of the checked out
-    >>> # branch
-    >>> stdout = git.stdout()  # -> ['checked-out-branch']
+    >>> # consume stdout (a list containing a `str`)
+    >>> stdout = git.stdout()  # -> ['...']
     >>> items = len(stdout)  # printing length of `stdout()` outputs
     >>> print(items)
     1
@@ -60,15 +59,14 @@ Get branch
     >>> print(items)
     0
     >>> # stdout can be accrued
-    >>> # ['checked-out-branch', 'checked-out-branch']
-    >>> git.symbolic_ref("--short", "HEAD", capture=True)
-    >>> git.symbolic_ref("--short", "HEAD", capture=True)
+    >>> git.init(capture=True)  # ['...']
+    >>> git.init(capture=True)  # ['...', '...']
     >>> print(len(git.stdout()))
     2
     >>> # stdout is consumed
     >>> print(len(git.stdout()))
     0
-    >>> git.symbolic_ref("--short", "HEAD", capture=True)
+    >>> git.init(capture=True)
     >>> git.stdout()  # [...] -> void; clear stdout, if it exists
     >>> print(len(git.stdout()))
     0
