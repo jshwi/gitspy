@@ -26,8 +26,8 @@ authors = ["jshwi <stephen@jshwisolutions.com>"]
 description = "Intuitive Git for Python"
 license = "MIT"
 name = "gitspy"
-version = "0.1.1"
 readme = "README.rst"
+version = "0.1.1"
 
 [tool.poetry.dependencies]
 python = "^3.8"
