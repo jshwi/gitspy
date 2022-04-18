@@ -36,50 +36,57 @@ Example Usage
 -------------
 
 Get branch
+**********
+
+Capture will store stdout, which can then be consumed by calling `git.stdout()`
+
+Default is to return returncode and print stdout and stderr to console
 
 .. code-block:: python
 
     >>> import gitspy
     >>> git = gitspy.Git()
-    >>> # capture will store stdout, which can then be consumed by
-    >>> # calling `git.stdout()`
-    >>> # default is to print stdout, and stderr, to console
-    >>> returncode = git.init(capture=True)
-    >>> print(returncode)  # printing returncode
-    0
-    >>> # consume stdout (a list containing a `str`)
-    >>> stdout = git.stdout()  # -> ['...']
-    >>> items = len(stdout)  # printing length of `stdout()` outputs
-    >>> print(items)
-    1
-    >>> # no commands have been called yet since last call to `stdout`,
-    >>> # so stdout is empty
-    >>> stdout = git.stdout()  # -> []
-    >>> items = len(stdout)  # printing length of ``stdout()`` outputs
-    >>> print(items)
-    0
-    >>> # stdout can be accrued
     >>> git.init(capture=True)  # ['...']
+    0
+
+Consume stdout (a list containing a str)
+
+.. code-block:: python
+
+    >>> len(git.stdout())  # []
+    1
+
+No commands have been called yet since last call to `stdout` so stdout is empty
+
+.. code-block:: python
+
+    >>> len(git.stdout())  # []
+    0
+
+Stdout can be accrued
+
+.. code-block:: python
+
+    >>> git.init(capture=True)  # ['...']
+    0
     >>> git.init(capture=True)  # ['...', '...']
-    >>> print(len(git.stdout()))
+    0
+    >>> len(git.stdout())  # []
     2
-    >>> # stdout is consumed
-    >>> print(len(git.stdout()))
+
+Stdout is consumed
+
+.. code-block:: python
+
+    >>> len(git.stdout())  # []
     0
-    >>> git.init(capture=True)
-    >>> git.stdout()  # [...] -> void; clear stdout, if it exists
-    >>> print(len(git.stdout()))
-    0
-..
 
 Get commit hash
+***************
 
 .. code-block:: python
 
-    >>> import gitspy
-    >>> git = gitspy.Git()
-    >>> git.rev_parse("HEAD", capture=True)
-    >>> stored = git.stdout()[0]
-    >>> print(len(stored))  # print the length of the unique hash
+    >>> git.rev_parse("HEAD", capture=True)  # ['...']
+    0
+    >>> len(git.stdout()[0])  # []
     40
-..
