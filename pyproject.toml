@@ -35,7 +35,7 @@ spall = "^0.1.0"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
-ipython = "^8.2.0"
+ipython = "^8.3.0"
 pyaud = "^3.13.3"
 pytest = "^7.1.2"
 pytest-randomly = "^3.10.3"
