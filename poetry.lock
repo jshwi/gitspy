@@ -462,14 +462,14 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "lsfiles"
-version = "0.1.1"
+version = "0.1.2"
 description = "Path object VC index"
 category = "dev"
 optional = false
 python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
-gitspy = ">=0.1.0,<0.2.0"
+gitspy = ">=0,<1"
 
 [[package]]
 name = "m2r"
@@ -991,7 +991,7 @@ python-versions = "*"
 
 [[package]]
 name = "spall"
-version = "0.1.1"
+version = "0.3.0"
 description = "Object-oriented commandline"
 category = "main"
 optional = false
@@ -1496,8 +1496,8 @@ lazy-object-proxy = [
     {file = "lazy_object_proxy-1.7.1-pp37.pp38-none-any.whl", hash = "sha256:d66906d5785da8e0be7360912e99c9188b70f52c422f9fc18223347235691a84"},
 ]
 lsfiles = [
-    {file = "lsfiles-0.1.1-py3-none-any.whl", hash = "sha256:03eabd2c1546205a9f580e3918f8f2eeb079a39a76789e7affe269e97c7eda6e"},
-    {file = "lsfiles-0.1.1.tar.gz", hash = "sha256:3be1895ddc5e0f2baee473cf1403392ee6eaca414b83ee6bfc5bc6a58b2fb4ec"},
+    {file = "lsfiles-0.1.2-py3-none-any.whl", hash = "sha256:2b45f7a12af5c8ba3124875bf7bc2e410c991dd3152f29dad95483d776d5f96e"},
+    {file = "lsfiles-0.1.2.tar.gz", hash = "sha256:0555f777cb3d6117639bdc900362db0df5838cc92bf5a517ebe4505ec3bf798d"},
 ]
 m2r = [
     {file = "m2r-0.2.1.tar.gz", hash = "sha256:bf90bad66cda1164b17e5ba4a037806d2443f2a4d5ddc9f6a5554a0322aaed99"},
@@ -1717,8 +1717,8 @@ snowballstemmer = [
     {file = "snowballstemmer-2.2.0.tar.gz", hash = "sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1"},
 ]
 spall = [
-    {file = "spall-0.1.1-py3-none-any.whl", hash = "sha256:997c8fa6fd3135466c8de53182c68ef32dfbf1e2cfc882f3a816057b21d51176"},
-    {file = "spall-0.1.1.tar.gz", hash = "sha256:72a06d24a3dc333fd66212f2b5247a5d813baaa4bacfd4fed69a324788475cf1"},
+    {file = "spall-0.3.0-py3-none-any.whl", hash = "sha256:ab813db19255a32681cf1dda77fe4b58c97b9c08451f36bd330a9b9639c755c6"},
+    {file = "spall-0.3.0.tar.gz", hash = "sha256:e3761e5f6506ed950218c613ac79f2bf4515805f3aea90c2b09919f55500a7f0"},
 ]
 sphinx = [
     {file = "Sphinx-4.5.0-py3-none-any.whl", hash = "sha256:ebf612653238bcc8f4359627a9b7ce44ede6fdd75d9d30f68255c7383d3a6226"},
