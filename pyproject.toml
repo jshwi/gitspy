@@ -47,11 +47,12 @@ pyaud = "^3.6.0"
 pytest = "^6.2.5"
 pytest-randomly = "^3.10.3"
 restview = "^2.9.3"
-toml-sort = "^0.19.0"
 
 [tool.pyaud.audit]
 modules = [
-    "files",
+    "toc",
+    "whitelist",
+    "sort-pyproject",
     "format",
     "format-docs",
     "format-str",
@@ -59,16 +60,44 @@ modules = [
     "typecheck",
     "unused",
     "lint",
-    "coverage",
+    "const",
+    "test",
     "docs",
 ]
 
-[tool.pyaud.logging.root.debug]
-level = "DEBUG"
+[tool.pyaud.clean]
+exclude = [
+    "*.egg*",
+    ".mypy_cache",
+    ".env",
+]
 
-[tool.pyaud.packages]
-exclude = []
-name = "gitspy"
+[tool.pyaud.indexing]
+exclude = [
+    "whitelist.py",
+    "conf.py",
+]
+
+[tool.pyaud.logging]
+disable_existing_loggers = true
+version = 1
+
+[tool.pyaud.logging.formatters.standard]
+format = "%(asctime)s %(levelname)s %(name)s %(message)s"
+
+[tool.pyaud.logging.handlers.default]
+backupCount = 60
+class = "logging.handlers.TimedRotatingFileHandler"
+filename = "~/.cache/pyaud/log/pyaud.log"
+formatter = "standard"
+when = "d"
+
+[tool.pyaud.logging.root]
+handlers = [
+    "default",
+]
+level = "DEBUG"
+propagate = false
 
 [tool.pytest.ini_options]
 addopts = [
