@@ -76,12 +76,13 @@ def test_bare(capsys: pytest.CaptureFixture, git: gitspy.Git) -> None:
 
 def test_key_in_context(monkeypatch: pytest.MonkeyPatch) -> None:
     """Confirm there is no error raised when deleting temp key-value."""
-    obj = {"key": "original-value"}
+    key = "key"
+    obj = {key: "original-value"}
     monkeypatch.setattr("os.environ", obj)
     # noinspection PyUnresolvedReferences
     with gitspy._environ.TempEnvVar(  # pylint: disable=protected-access
         key="temp-value"
     ):
-        assert obj["key"] == "temp-value"
+        assert obj[key] == "temp-value"
 
-    assert obj["key"] == "original-value"
+    assert obj[key] == "original-value"
