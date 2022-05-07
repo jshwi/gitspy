@@ -27,7 +27,7 @@ class Git(_Subprocess):
             .splitlines()
             if i.startswith("   ")
         ]
-        super().__init__("git", positionals=self.commands, loglevel="debug")
+        super().__init__("git", positionals=self.commands)
 
     def call(self, *args: str, **kwargs: _t.Union[bool, str]) -> int:
         """Call partial git command instantiated in superclass.
