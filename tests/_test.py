@@ -11,9 +11,6 @@ import pytest
 
 import gitspy
 
-# noinspection PyProtectedMember
-import gitspy._environ
-
 from . import REPO
 
 
@@ -72,37 +69,14 @@ def test_bare(capsys: pytest.CaptureFixture, git: gitspy.Git) -> None:
     assert f"Initialized empty Git repository in {remote}" in output.out
 
 
-def test_key_in_context(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Confirm there is no error raised when deleting temp key-value.
-
-    :param monkeypatch: Mock patch environment and attributes.
-    """
-    key = "key"
-    obj = {key: "original-value"}
-    monkeypatch.setattr("os.environ", obj)
-    # noinspection PyUnresolvedReferences
-    with gitspy._environ.TempEnvVar(key="temp-value"):
-        assert obj[key] == "temp-value"
-
-    # assert no `KeyError` on `__exit__`
-    with gitspy._environ.TempEnvVar(key_2="second-temp-value"):
-        del obj["key_2"]
-
-    assert obj[key] == "original-value"
-
-
-def test_find_gitdir(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, git: gitspy.Git
-) -> None:
+def test_find_gitdir(tmp_path: Path, git: gitspy.Git) -> None:
     """Test that `GIT_DIR` is found and added temporarily to environ.
 
     :param tmp_path: Create and return a temporary directory for
         testing.
-    :param monkeypatch: Mock patch environment and attributes.
     :param git: Instantiated ``Git`` object.
     """
     expected_gitdir = tmp_path / REPO / ".git"
     git.init(file=os.devnull)
-    monkeypatch.setattr("gitspy._environ.TempEnvVar.__exit__", lambda *_: None)
     git.status()
     assert os.environ["GIT_DIR"] == str(expected_gitdir)

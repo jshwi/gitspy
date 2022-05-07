@@ -2,14 +2,13 @@
 gitspy._subprocess
 ==================
 """
+import contextlib as _contextlib
 import os as _os
 import subprocess as _sp
 import typing as _t
 from pathlib import Path as _Path
 
 from spall import Subprocess as _Subprocess
-
-from ._environ import TempEnvVar as _TempEnvVar
 
 
 class Git(_Subprocess):
@@ -54,10 +53,17 @@ class Git(_Subprocess):
         """
         cwd = _Path.cwd().absolute()
         gitdir = self._get_gitdir(cwd) or cwd / ".git"
-        with _TempEnvVar(
-            GIT_WORK_TREE=str(gitdir.parent), GIT_DIR=str(gitdir)
-        ):
-            if "--bare" in args:
-                del _os.environ["GIT_WORK_TREE"]
+        try:
+            _os.environ.update(
+                GIT_DIR=str(gitdir), GIT_WORK_TREE=str(gitdir.parent)
+            )
 
+            # silence stderr to avoid duplicates if error raised again
+            # and to avoid writing to stderr if second command succeeds
+            with _contextlib.redirect_stderr(None):
+                return super().call(*args, **kwargs)
+
+        # options such as `--bare` won't allow `GIT_WORK_TREE` to be set
+        except _sp.CalledProcessError:
+            del _os.environ["GIT_WORK_TREE"]
             return super().call(*args, **kwargs)

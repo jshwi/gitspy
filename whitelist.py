@@ -1,6 +1,3 @@
-exc_tb  # unused variable (gitspy/_environ.py:30)
-exc_type  # unused variable (gitspy/_environ.py:30)
-exc_val  # unused variable (gitspy/_environ.py:30)
 fixture_git  # unused function (tests/conftest.py:44)
 fixture_mock_environment  # unused function (tests/conftest.py:15)
 fixture_setup_git  # unused function (tests/conftest.py:29)
