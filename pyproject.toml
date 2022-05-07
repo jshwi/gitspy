@@ -42,7 +42,7 @@ spall = "^0"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
-ipython = "^7.31.0"
+ipython = "^8.3.0"
 pyaud = "^3.6.0"
 pytest = "^7.1.2"
 pytest-randomly = "^3.10.3"
