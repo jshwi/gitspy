@@ -34,7 +34,7 @@ description = "Intuitive Git for Python"
 license = "MIT"
 name = "gitspy"
 readme = "README.rst"
-version = "0.1.2"
+version = "0.2.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"

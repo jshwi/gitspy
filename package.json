@@ -1,6 +1,6 @@
 {
   "name": "gitspy",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Intuitive Git for Python",
   "private": true,
   "directories": {
