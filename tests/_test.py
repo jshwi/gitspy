@@ -11,6 +11,9 @@ import pytest
 
 import gitspy
 
+# noinspection PyProtectedMember
+import gitspy._environ
+
 from . import REPO
 
 
@@ -38,17 +41,6 @@ def test_arg_order_clone(
     assert [
         f"<Git (git)> clone --depth 1 --branch v1.1.0 {real_repo} {path}"
     ] == called
-
-
-def test_not_a_repository_error(git: gitspy.Git) -> None:
-    """Test error when Git command run in non-repository project.
-
-    :param git: Instantiated ``Git`` object.
-    """
-    with pytest.raises(gitspy.exceptions.NotARepositoryError) as err:
-        git.add(".")
-
-    assert str(err.value) == "not a git repository"
 
 
 def test_called_process_error_with_git(git: gitspy.Git) -> None:
@@ -92,4 +84,25 @@ def test_key_in_context(monkeypatch: pytest.MonkeyPatch) -> None:
     with gitspy._environ.TempEnvVar(key="temp-value"):
         assert obj[key] == "temp-value"
 
+    # assert no `KeyError` on `__exit__`
+    with gitspy._environ.TempEnvVar(key_2="second-temp-value"):
+        del obj["key_2"]
+
     assert obj[key] == "original-value"
+
+
+def test_find_gitdir(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, git: gitspy.Git
+) -> None:
+    """Test that `GIT_DIR` is found and added temporarily to environ.
+
+    :param tmp_path: Create and return a temporary directory for
+        testing.
+    :param monkeypatch: Mock patch environment and attributes.
+    :param git: Instantiated ``Git`` object.
+    """
+    expected_gitdir = tmp_path / REPO / ".git"
+    git.init(file=os.devnull)
+    monkeypatch.setattr("gitspy._environ.TempEnvVar.__exit__", lambda *_: None)
+    git.status()
+    assert os.environ["GIT_DIR"] == str(expected_gitdir)
