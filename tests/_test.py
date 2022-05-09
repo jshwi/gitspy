@@ -40,18 +40,26 @@ def test_arg_order_clone(
     ] == called
 
 
-def test_called_process_error_with_git(git: gitspy.Git) -> None:
+def test_called_process_error_with_git(
+    tmp_path: Path, capsys: pytest.CaptureFixture, git: gitspy.Git
+) -> None:
     """Test regular Git command error.
 
+    :param tmp_path: Create and return a temporary directory for
+        testing.
+    :param capsys: Capture system output.
     :param git: Instantiated ``Git`` object.
     """
-    git.init(file=os.devnull)
     with pytest.raises(CalledProcessError) as err:
-        git.commit("-m", "Second initial commit")
+        git.status()
 
+    # confirm stderr is not repeated with strong equality
+    assert (
+        capsys.readouterr()[1].strip()
+        == f"fatal: not a git repository: '{tmp_path / REPO / '.git'}'"
+    )
     assert str(err.value) == (
-        "Command 'git commit -m Second initial commit' returned non-zero exit "
-        "status 1."
+        "Command 'git status' returned non-zero exit status 128."
     )
 
 
