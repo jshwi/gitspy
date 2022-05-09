@@ -2,7 +2,6 @@
 gitspy._subprocess
 ==================
 """
-import contextlib as _contextlib
 import os as _os
 import subprocess as _sp
 import typing as _t
@@ -60,8 +59,9 @@ class Git(_Subprocess):
 
             # silence stderr to avoid duplicates if error raised again
             # and to avoid writing to stderr if second command succeeds
-            with _contextlib.redirect_stderr(None):
-                return super().call(*args, **kwargs)
+            _kwargs = dict(**kwargs)
+            _kwargs["stderr_capture"] = True
+            return super().call(*args, **_kwargs)
 
         # options such as `--bare` won't allow `GIT_WORK_TREE` to be set
         except _sp.CalledProcessError:
