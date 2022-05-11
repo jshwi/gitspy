@@ -60,7 +60,7 @@ class Git(_Subprocess):
             # silence stderr to avoid duplicates if error raised again
             # and to avoid writing to stderr if second command succeeds
             _kwargs = dict(**kwargs)
-            _kwargs["stderr_capture"] = True
+            _kwargs["stderr_file"] = _os.devnull
             return super().call(*args, **_kwargs)
 
         # options such as `--bare` won't allow `GIT_WORK_TREE` to be set
