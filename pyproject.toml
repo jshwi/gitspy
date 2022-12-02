@@ -39,6 +39,7 @@ version = "0.2.0"
 [tool.poetry.dependencies]
 python = "^3.8"
 spall = "^0"
+wrapt = "^1.14.1"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
