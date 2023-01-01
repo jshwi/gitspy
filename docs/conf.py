@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = "gitspy"
-copyright = "2021, Stephen Whitlock"
+copyright = "2023, Stephen Whitlock"
 author = "Stephen Whitlock"
 
 # The full version, including alpha/beta/rc tags
@@ -39,6 +39,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinxcontrib.fulltoc",
     "sphinxcontrib.programoutput",
+    "sphinx_toolbox.more_autodoc.autonamedtuple",
 ]
 
 
