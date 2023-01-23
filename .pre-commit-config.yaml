@@ -129,14 +129,14 @@ repos:
         args:
           - "--write"
   - repo: https://github.com/PyCQA/docformatter
-    rev: "v1.5.1"
+    rev: "v1.6.0.rc1"
     hooks:
       - id: docformatter
         args:
           - "--recursive"
           - "--wrap-summaries=72"
   - repo: https://github.com/pappasam/toml-sort
-    rev: "v0.22.1"
+    rev: "v0.22.3"
     hooks:
       - id: toml-sort
         args:
