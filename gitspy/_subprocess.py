@@ -40,7 +40,9 @@ class Git(_Subprocess):
 
         return self._get_gitdir(path.parent)
 
-    def call(self, *args: str, **kwargs: _t.Union[bool, str]) -> int:
+    def call(
+        self, *args: str, **kwargs: _t.Union[bool, str, _os.PathLike]
+    ) -> int:
         """Call partial git command instantiated in superclass.
 
         :param args: Command's positional arguments.
