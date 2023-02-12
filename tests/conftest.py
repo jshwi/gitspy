@@ -31,11 +31,11 @@ def fixture_setup_git() -> None:
     """Setup ~/.gitconfig in mocked "$HOME" directory."""
     config = ConfigParser(default_section="")
     config.read_dict(
-        dict(
-            user={"name": "test_name", "email": "test_name@test_email.com"},
-            advice={"detachedHead": "false"},
-            init={"defaultBranch": "master"},
-        )
+        {
+            "user": {"name": "test_name", "email": "test_name@test_email.com"},
+            "advice": {"detachedHead": "false"},
+            "init": {"defaultBranch": "master"},
+        }
     )
     with open(Path.home() / ".gitconfig", "w", encoding="utf-8") as fout:
         config.write(fout)
