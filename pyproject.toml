@@ -72,7 +72,7 @@ version = "0.3.0"
 python = "^3.8"
 spall = "^0"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
 ipython = "^8.3.0"
 pre-commit = "^2.21.0"
