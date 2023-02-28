@@ -6,8 +6,8 @@ gitspy
 .. image:: https://img.shields.io/pypi/v/gitspy
     :target: https://pypi.org/project/gitspy/
     :alt: PyPI
-.. image:: https://github.com/jshwi/gitspy/actions/workflows/ci.yml/badge.svg
-    :target: https://github.com/jshwi/gitspy/actions/workflows/ci.yml
+.. image:: https://github.com/jshwi/gitspy/actions/workflows/build.yaml/badge.svg
+    :target: https://github.com/jshwi/gitspy/actions/workflows/build.yaml
     :alt: CI
 .. image:: https://results.pre-commit.ci/badge/github/jshwi/gitspy/master.svg
    :target: https://results.pre-commit.ci/latest/github/jshwi/gitspy/master
