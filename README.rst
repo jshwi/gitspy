@@ -43,8 +43,8 @@ gitspy
     :target: https://snyk.io/test/github/jshwi/gitspy/badge.svg
     :alt: Known Vulnerabilities
 .. image:: https://snyk.io/advisor/python/gitspy/badge.svg
-  :target: https://snyk.io/advisor/python/gitspy
-  :alt: gitspy
+    :target: https://snyk.io/advisor/python/gitspy
+    :alt: gitspy
 
 Intuitive Git for Python
 ------------------------
